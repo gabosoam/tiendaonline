@@ -98,52 +98,12 @@
 
 
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">Productos registrados</a></li>
-                    <li><a data-toggle="tab" href="#menu1">Gestión</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home">Gestión</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Productos registrados</a></li>
                 </ul>
 
                 <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
-                        <h4>Productos registrado en la base de datos</h4>
-
-                        <div class="thumbnail">
-                            <div class="table-responsive">
-                                <table id="tablaModelos" class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Código</th>
-                                            <th>Modelo</th>
-                                            <th>Marca</th>
-                                            <th>Categoría</th>
-                                            <th>Precio</th>
-                                            <th>Stock</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr w3-repeat="modelos">
-                                            <td>{{codigo}}</td>
-                                            <td>{{modelo}}</td>
-                                            <td>{{marca}}</td>
-                                            <td>{{categoria}}</td>
-                                            <td>{{precio}}</td>
-                                            <td>{{stock}}</td>
-                                            <td>
-                                                <button type="button" class="btn  btn-primary" data-toggle="tooltip" title="Añadir stock!">
-                                                    <span class="glyphicon glyphicon-plus-sign"></span>
-                                                </button>
-                                                <button type="button" class="btn  btn-danger" data-toggle="tooltip" title="Quitar stock!">
-                                                    <span class="glyphicon glyphicon-remove-sign"></span>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="menu1" class="tab-pane fade">
                         <h4>Gestión Ptoducto</h4>
                         <form class="form-horizontal" method="POST" action="/modelo" enctype="multipart/form-data">
                             <div class="form-group">
@@ -228,6 +188,47 @@
 
                     </div>
 
+                    <div id="menu1" class="tab-pane fade ">
+                        <h4>Productos registrado en la base de datos</h4>
+
+                        <div class="thumbnail">
+                            <div class="table-responsive">
+                                <table id="tablaModelos" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Modelo</th>
+                                            <th>Marca</th>
+                                            <th>Categoría</th>
+                                            <th>Precio</th>
+                                            <th>Stock</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr w3-repeat="modelos">
+                                            <td>{{codigo}}</td>
+                                            <td>{{modelo}}</td>
+                                            <td>{{marca}}</td>
+                                            <td>{{categoria}}</td>
+                                            <td>{{precio}}</td>
+                                            <td>{{stock}}</td>
+                                            <td>
+                                                <button type="button" class="btn  btn-primary" data-toggle="tooltip" title="Añadir stock!">
+                                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                                </button>
+                                                <button type="button" class="btn  btn-danger" data-toggle="tooltip" title="Quitar stock!">
+                                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
 
 
