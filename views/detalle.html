@@ -78,7 +78,7 @@
                 <div class="thumbnail">
 
                     <div class="caption-full">
-                        <form method="POST" class="form-horizontal" action="/compra">
+                        <form method="POST" class="form-horizontal" action="/venta">
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="idProducto">Código del producto:</label>
                                 <div class="col-sm-10">
@@ -94,7 +94,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="identificacionCliente">Número de cédula:</label>
                                 <div class="col-sm-10">
-                                    <input type="number"  class="form-control" id="identificacionCliente" name="identificacionCliente" placeholder="Ingrese su número de cédula" min="0"  required>
+                                    <input type="text" pattern="[0-9]{10,10}"  class="form-control" id="identificacionCliente" name="identificacionCliente" placeholder="Ingrese su número de cédula" >
                                 </div>
                             </div>
                             <div class="form-group">
@@ -129,33 +129,33 @@
                             </div>
                             <hr>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="unitarioCompra">V. Unitario: $</label>
+                                <label class="control-label col-sm-2" for="unitarioVenta">V. Unitario: $</label>
                                 <div class="col-sm-10">
-                                    <input type="number"  class="form-control" id="unitarioCompra" name="unitarioCompra" value="<%-Unitario%>"  min="0" readonly>
+                                    <input type="number"  class="form-control" id="unitarioVenta" name="unitarioVenta" value="<%-Unitario%>"  min="0" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="subtotalCompra">Subtotal:</label>
+                                <label class="control-label col-sm-2" for="subtotalVenta">Subtotal:</label>
                                 <div class="col-sm-10">
-                                    <input type="number"  class="form-control" id="subtotalCompra" name="subtotalCompra" value="<%-Subtotal%>"  min="0" readonly>
+                                    <input type="number"  class="form-control" id="subtotalVenta" name="subtotalVenta" value="<%-Subtotal%>"  min="0" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="impuestosCompra">Impuestos:</label>
+                                <label class="control-label col-sm-2" for="impuestosVenta">Impuestos:</label>
                                 <div class="col-sm-10">
-                                    <input type="number"  class="form-control" id="impuestosCompra" name="impuestosCompra" value="<%-Impuestos%>" min="0" readonly>
+                                    <input type="number"  class="form-control" id="impuestosVenta" name="impuestosVenta" value="<%-Impuestos%>" min="0" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="totalCompra">Total:</label>
+                                <label class="control-label col-sm-2" for="totalVenta">Total:</label>
                                 <div class="col-sm-10">
-                                    <input type="number"  class="form-control" id="totalCompra" name="totalCompra" value="<%-Total%>"  min="0" readonly>
+                                    <input type="number"  class="form-control" id="totalVenta" name="totalVenta" value="<%-Total%>"  min="0" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="formaCompra">Forma de pago:</label>
+                                <label class="control-label col-sm-2" for="formaVenta">Forma de pago:</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="formaCompra" name="formaCompra">
+                                    <select class="form-control" id="formaVenta" name="formaVenta">
                                         <option value="Efectivo">Efectivo</option>
                                         <option value="Cheque">Cheque</option>
                                         <option value="Tarjeta de crédito">Tarjeta de crédito</option>

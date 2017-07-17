@@ -4,9 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
 
-var index = require('./routes/index');
+
+
 var users = require('./routes/users');
 var categoria = require('./routes/categoria');
 var cliente = require('./routes/cliente');
@@ -15,8 +15,9 @@ var marca = require('./routes/marca');
 var modelo = require('./routes/modelo');
 var producto = require('./routes/producto');
 var sucursal = require('./routes/sucursal');
-var compra = require('./routes/compra');
+var venta = require('./routes/venta');
 var admin = require('./routes/admin');
+var index = require('./routes/index');
 
 
 
@@ -36,12 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-    secret: '4587controlMedico14685',
-    cookie: {maxAge: 6000000000000000000},
-    resave: false,
-    saveUninitialized: true
-}));
+
 
 app.use('/', index);
 app.use('/users', users);
@@ -52,8 +48,9 @@ app.use('/marca', marca);
 app.use('/modelo', modelo);
 app.use('/producto', producto);
 app.use('/sucursal', sucursal);
-app.use('/compra', compra);
+app.use('/venta', venta);
 app.use('/admin', admin);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -70,6 +67,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  console.log(err);
   res.render('error');
 });
 

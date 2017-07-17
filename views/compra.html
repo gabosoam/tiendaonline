@@ -31,7 +31,6 @@
 
 
         });
-
     </script>
 
 
@@ -84,27 +83,26 @@
 
         <div class="row">
 
-            <div  class="col-md-3 form-group">
+            <form method="POST" action="/detalle/" class="col-md-3 form-group">
                 <p class="lead">Shop Name</p>
-                <a href="/admin/productos" class="list-group-item active">Productos</a>
-                <a href="/admin/compras" class="list-group-item">Ventas</a>
+                <a href="/admin/productos" class="list-group-item">Productos</a>
+                <a href="/admin/compras" class="list-group-item active">Ventas</a>
                 <a href="" class="list-group-item ">Empresa</a>
 
 
 
-            </div>
+            </form>
 
             <div class="col-md-9">
-
-
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#home">Gestión</a></li>
                     <li><a data-toggle="tab" href="#menu1">Productos registrados</a></li>
                 </ul>
 
+
                 <div class="tab-content">
                     <div id="menu1" class="tab-pane ">
-                        <h4>Productos registrado en la base de datos</h4>
+                        <h4>Ordenes de compra</h4>
 
                         <div class="thumbnail">
                             <div class="table-responsive">
@@ -144,87 +142,45 @@
                         </div>
                     </div>
                     <div id="home" class="tab-pane fade in active">
-                        <h4>Gestión Ptoducto</h4>
-                        <form class="form-horizontal" method="POST" action="/modelo" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="idModelo">Código del producto:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="idModelo" placeholder="Ingrese el código del producto" maxlength="20" name="idModelo"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="nombreModelo">Nombre del producto:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="nombreModelo" placeholder="Ingrese el nombre del producto" maxlength="20" name="nombreModelo"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="fkCategoria">Categoría:</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="fkCategoria" name="fkCategoria">
-                                        <option w3-repeat="categorias" value="{{codigo}}">{{nombre}}</option>
-                                        
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="fkMarca">Marca:</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" id="fkMarca" name="fkMarca">
-                                        <option w3-repeat="marcas" value="{{codigo}}">{{nombre}}</option>
-                                        
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="precioModelo">Precio del producto:</label>
-                                <div class="col-sm-10">
-                                    <input type="number" step="any" class="form-control" id="precioModelo" min="1" placeholder="Ingrese el precio del producto" name="precioModelo"
-                                        required>
-                                </div>
-                            </div>
+                        <h4>Ordenes de compra</h4>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="stock">Stock inicial:</label>
-                                <div class="col-sm-10">
-                                    <input type="number" min="1" class="form-control" id="stock" placeholder="Ingrese el stock inicial" name="stock" value="1"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="tituloModelo">Título de la publicación:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="tituloModelo" placeholder="Ingrese el título de la publicación" maxlength="100"
-                                        name="tituloModelo" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="imagenPublicacion">Imagen de la publicación:</label>
-                                <div class="col-sm-10">
-                                    <input id="imagenPublicacion" type="file"  class="form-control" name="filetoupload" accept=".jpg" required>
-                                </div>
-                            </div>
+                        <div class="thumbnail">
+                            <div class="table-responsive">
+                                <table id="tablaModelos" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Modelo</th>
+                                            <th>Marca</th>
+                                            <th>Categoría</th>
+                                            <th>Precio</th>
+                                            <th>Stock</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr w3-repeat="modelos">
+                                            <td>{{codigo}}</td>
+                                            <td>{{modelo}}</td>
+                                            <td>{{marca}}</td>
+                                            <td>{{categoria}}</td>
+                                            <td>{{precio}}</td>
+                                            <td>{{stock}}</td>
+                                            <td>
+                                                <button type="button" class="btn  btn-primary" data-toggle="tooltip" title="Añadir stock!">
+                                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                                </button>
+                                                <button type="button" class="btn  btn-danger" data-toggle="tooltip" title="Quitar stock!">
+                                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                                </button>
+                                            </td>
 
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="publicacionModelo">Publicación:</label>
-                                <div class="col-sm-10">
-                                    <textarea name="publicacionModelo" class="summernote" id="contents" title="Contents" required></textarea>
-                                </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
 
-                            
-
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-default">Submit</button>
-                                </div>
-                            </div>
-                        </form>
 
                     </div>
 
@@ -271,7 +227,7 @@
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 
     <!-- Controlador -->
-    <script src="../javascripts/gestion/adminGestion.js"></script>
+    <script src="../javascripts/gestion/adminVenta.js"></script>
 
 </body>
 

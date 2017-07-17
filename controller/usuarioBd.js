@@ -1,5 +1,9 @@
 var mysql = require('mysql');
 var config = require('../config/configuracion.js');
+var bcrypt = require('bcrypt-nodejs');
+var generateHash = function (password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+}
 
 
 var connection = mysql.createPool({
@@ -33,13 +37,14 @@ module.exports = {
 
                     if (error) {
                         callback('error en la consulta: ' + error, null);
-                   
+
                     } else {
                         var usuarioDatos = {};
                         if (results[0]) {
 
 
-                            if (user.passwordUsuario === results[0].passwordUsuario) {
+
+                            if (bcrypt.compareSync(user.passwordUsuario, results[0].passwordUsuario)) {
 
                                 usuarioDatos = {
                                     nombreUsuario: results[0].nombreUsuario,
@@ -48,18 +53,18 @@ module.exports = {
                                 callback(null, usuarioDatos);
 
                             } else {
-                                callback("Contraseña incorrecta",null);
+                                callback("Contraseña incorrecta", null);
 
                             }
 
                         } else {
-                           callback("El usuario no existe", null );
+                            callback("El usuario no existe", null);
 
                         }
 
-                        
+
                     }
-                   
+
                     connection.release();
                 });
             }

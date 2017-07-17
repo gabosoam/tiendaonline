@@ -5,16 +5,9 @@ var formidable = require('formidable');
 var fs = require('fs');
 
 /* GET home page. */
-router.get('/:codigo', function (req, res, next) {
-  modelo.obtenerDatos(req.params.codigo, function (error, datos) {
-    if (error) {
-      res.send(error);
-    } else {
 
-      res.render('modelo', { Empresa: 'Tienda Online', Producto: datos });
-    }
-  })
-});
+
+
 
 router.post('/', function (req, res, next) {
 
@@ -40,7 +33,34 @@ router.post('/', function (req, res, next) {
   });
 
 
-})
+});
+
+router.get('/:codigo',isLoggedInModelo, function (req, res, next) {
+  modelo.obtenerDatos(req.params.codigo, function (error, datos) {
+    if (error) {
+      res.send(error);
+    } else {
+
+      res.render('modelo', { Empresa: 'Tienda Online', Producto: datos,usuario: sessCliente.usuarioDatosCliente });
+    }
+  })
+});
+
+function isLoggedInModelo(req, res, next) {
+  sessCliente = req.session;
+  if (sessCliente.usuarioDatosCliente)
+    return next();
+  sessCliente.originalUrl = req.originalUrl;
+    modelo.obtenerDatos(req.params.codigo, function (error, datos) {
+    if (error) {
+      res.send(error);
+    } else {
+
+      res.render('modelo', { Empresa: 'Tienda Online', Producto: datos,usuario: null });
+    }
+  })
+
+}
 
 
 module.exports = router;

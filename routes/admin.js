@@ -1,21 +1,27 @@
 var express = require('express');
 var router = express.Router();
 var usuario = require('../controller/usuarioBd');
+var session = require('express-session');
+
+router.use(session({
+    secret: 'asdasd52121admin',
+    cookie: {maxAge: 6000000000000000000},
+    resave: false,
+    saveUninitialized: true
+}));
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.redirect('/admin/productos');
 });
 
-router.get('/login', function (req, res, next) {
-    res.render('login', { title: 'Express' });
+
+router.get('/productos', isLoggedInAdmin, function (req, res, next) {
+    res.render('admin', { Empresa: 'Administración', usuario: sess.usuarioDatos });
 });
 
-router.get('/productos', isLoggedIn, function (req, res, next) {
-    res.render('admin', { Empresa: 'Express', usuario: sess.usuarioDatos });
-});
 
-function isLoggedIn(req, res, next) {
+function isLoggedInAdmin(req, res, next) {
     sess = req.session;
     if (sess.usuarioDatos)
         return next();
@@ -33,6 +39,19 @@ router.get('/logout', function (req, res) {
         }
     });
 });
+
+
+
+
+
+router.get('/login', function (req, res, next) {
+    res.render('login', { title: 'Express' });
+});
+
+router.get('/compras', isLoggedInAdmin, function (req, res, next) {
+    res.render('compra', { Empresa: 'Administración', usuario: sess.usuarioDatos });
+});
+
 
 router.post('/loginPass', function (req, res) {
     console.log();

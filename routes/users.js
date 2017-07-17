@@ -12,6 +12,8 @@ router.get('/', function (req, res, next) {
 
 router.io.on('connection', function (socket) {
 
+  
+
   socket.on('Cargar categorias', function (callback) {
     categorias.buscar(function (error, datos) {
       if (error) {
