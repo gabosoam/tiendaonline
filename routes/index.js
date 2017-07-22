@@ -4,6 +4,7 @@ var categoria = require('../controller/categoriaBd');
 var sessionCliente = require('express-session');
 var cliente = require('../controller/clienteBd');
 var modelo = require('../controller/modeloBd');
+var empresa = require('../config/empresa');
 
 router.use(sessionCliente({
   secret: '12313232cliente',
@@ -16,15 +17,15 @@ router.use(sessionCliente({
 
 /* GET home page. */
 router.get('/', isLoggedIn, function (req, res, next) {
-  res.render('index', { Empresa: 'Express', usuario: sessCliente.usuarioDatosCliente });
+  res.render('index', { Empresa: empresa.nombre, usuario: sessCliente.usuarioDatosCliente });
 });
 
 router.get('/registro', function (req, res, next) {
-  res.render('registro', { Empresa: 'Tienda Online' });
+  res.render('registro', { Empresa: empresa.nombre });
 });
 
 router.get('/login', function (req, res, next) {
-  res.render('loginUsuario', { Empresa: 'Tienda Online', error: null });
+  res.render('loginUsuario', { Empresa: empresa.nombre, error: null });
 })
 
 router.get('/logout', function (req, res) {
@@ -33,7 +34,7 @@ router.get('/logout', function (req, res) {
       console.log(err);
     } else {
 
-      res.render('index', { Empresa: 'Express', usuario: null });
+      res.render('index', { Empresa: empresa.nombre, usuario: null });
     }
   });
 });
@@ -47,7 +48,7 @@ function isLoggedIn(req, res, next) {
   if (sessCliente.usuarioDatosCliente)
     return next();
   sessCliente.originalUrl = req.originalUrl;
-  res.render('index', { Empresa: 'Express', usuario: null });
+  res.render('index', { Empresa: empresa.nombre, usuario: null });
 
 }
 

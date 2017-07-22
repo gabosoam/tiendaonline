@@ -71,27 +71,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    
                     <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
+                        <a href="#foot">Contacto</a>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right t">
-
-                    <% if (usuario) { %>
-                        <li><a href=""><span class="glyphicon glyphicon-user"></span> Bienvenido(a) <%=usuario.nombreCliente%></a></li>
-                        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
-
-                        <% }else{ %>
-
-                            <li><a href="/login"><span class="glyphicon glyphicon-user"></span> Iniciar sesión</a></li>
-                    <% } %>
-                </ul>
+       
 
             </div>
             <!-- /.navbar-collapse -->
@@ -104,12 +89,41 @@
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-3 ">
+                 <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" placeholder="Buscar" onchange="cargarPorTermino(this.value)">
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div><br>
+            
 
 
+                
+                      
+                 
+                    <hr>
+
+
+
+                <div class="list-group">
+
+                <% if (usuario) { %>
+                    <button class="list-group-item "><span class="glyphicon glyphicon-user"></span> <%=usuario.nombreCliente%> <%=usuario.apellidoCliente%></button>
+                    <a href="/logout" class="list-group-item"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a>
+
+                    <% }else{ %>
+
+                       <a href="/login" class="list-group-item"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
+                        <% } %>
+                    
+                </div>
                 <p class="lead">
                     Categorías
                 </p>
+
                 <div id="listaCategorias" class="list-group">
                     <button onclick="cargarPorCategoria('{{nombre}}')" w3-repeat="categorias" class="list-group-item">{{nombre}}</button>
 
@@ -118,76 +132,33 @@
 
             <div class="col-md-9">
 
-                <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control" placeholder="Buscar" onchange="cargarPorTermino(this.value)">
-                    <span class="input-group-addon">
-                        <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
-                </div><br>
+               
 
-                <div class="row carousel-holder">
-
-                    <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="../images/banners/banner2.png" alt="">
-                                </div>
-                                <div class="item">
-
-                                    <img class="slide-image" src="../images/banners/banner1.jpg" alt="">
-                                </div>
-
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+               
                 <div class="alert alert-info alert-dismissable">
 
                     <p id="resultado"><strong>Info! </strong>Productos disponibles.</p>
                 </div>
 
-                <div id="listaModelos" class="row">
+                <div id="listaModelos" class="row pagination">
 
-                    <div w3-repeat="modelos" class="col-sm-6 col-lg-4 col-md-6">
+                    <div w3-repeat="modelos" class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="../images/modelos/{{codigo}}.jpg" alt="">
+                            <img src="../images/modelos/{{codigo}}.jpg" alt="" style="height: 150px; width: auto">
                             <div class="caption">
                                 <h4 class="pull-right">${{precio}}</h4>
                                 <h4><a href="/modelo/{{codigo}}">{{modelo}}</a>
                                 </h4>
                                 <p>{{titulo}}</p>
                             </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
+                           
                         </div>
                     </div>
 
 
 
                 </div>
+                <button class="col-lg-12 btn btn-default">Ver más</button>
 
             </div>
 
@@ -202,7 +173,7 @@
 
         <!-- Footer -->
         <footer>
-            <div class="row">
+            <div id="foot" class="row">
                 <div class="col-lg-3">
                     <h1>Tienda Online</h1>
                 </div>
