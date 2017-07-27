@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var cliente = require('../controller/clienteBd');
 
+/* Agregar un cliente */
 router.post('/',function(req,res,next){
   cliente.insertar(req.body,function(error,resultado){
     if(error){

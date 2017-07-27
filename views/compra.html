@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Item - Start Bootstrap Template</title>
+    <title>Tienda online</title>
     <!-- include jquery -->
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -50,22 +50,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/admin">
                     <%-Empresa%>
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -84,88 +76,55 @@
         <div class="row">
 
             <form method="POST" action="/detalle/" class="col-md-3 form-group">
-                <p class="lead">Shop Name</p>
+                <p class="lead">Administración</p>
                 <a href="/admin/productos" class="list-group-item">Productos</a>
                 <a href="/admin/compras" class="list-group-item active">Ventas</a>
-                <a href="" class="list-group-item ">Empresa</a>
+                <a href="/admin/empresa" class="list-group-item ">Empresa</a>
+
 
 
 
             </form>
 
             <div class="col-md-9">
+
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">Gestión</a></li>
-                    <li><a data-toggle="tab" href="#menu1">Productos registrados</a></li>
+                    <li class="active"><a data-toggle="tab" href="#home">Ordenes de compra</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Ventas</a></li>
                 </ul>
 
-
                 <div class="tab-content">
-                    <div id="menu1" class="tab-pane ">
-                        <h4>Ordenes de compra</h4>
-
+                    <div id="home" class="tab-pane fade in active ">
                         <div class="thumbnail">
                             <div class="table-responsive">
-                                <table id="tablaModelos" class="table table-hover">
+                                <table id="tablaVentas" class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Código</th>
-                                            <th>Modelo</th>
-                                            <th>Marca</th>
-                                            <th>Categoría</th>
-                                            <th>Precio</th>
-                                            <th>Stock</th>
-                                            <th>Acciones</th>
+                                            <th>Fecha</th>
+                                            <th>Cliente</th>
+                                            <th>Correo</th>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio unitario</th>
+                                            <th>Subtotal</th>
+
+                                            <th>Impuestos</th>
+                                            <th>Total</th>
+
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr w3-repeat="modelos">
-                                            <td>{{codigo}}</td>
-                                            <td>{{modelo}}</td>
-                                            <td>{{marca}}</td>
-                                            <td>{{categoria}}</td>
-                                            <td>{{precio}}</td>
-                                            <td>{{stock}}</td>
-                                            <td>
-                                                <button type="button" class="btn  btn-primary" data-toggle="tooltip" title="Añadir stock!">
-                                                    <span class="glyphicon glyphicon-plus-sign"></span>
-                                                </button>
-                                                <button type="button" class="btn  btn-danger" data-toggle="tooltip" title="Quitar stock!">
-                                                    <span class="glyphicon glyphicon-remove-sign"></span>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="home" class="tab-pane fade in active">
-                        <h4>Ordenes de compra</h4>
-
-                        <div class="thumbnail">
-                            <div class="table-responsive">
-                                <table id="tablaModelos" class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Código</th>
-                                            <th>Modelo</th>
-                                            <th>Marca</th>
-                                            <th>Categoría</th>
-                                            <th>Precio</th>
-                                            <th>Stock</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr w3-repeat="modelos">
-                                            <td>{{codigo}}</td>
-                                            <td>{{modelo}}</td>
-                                            <td>{{marca}}</td>
-                                            <td>{{categoria}}</td>
-                                            <td>{{precio}}</td>
-                                            <td>{{stock}}</td>
+                                        <tr w3-repeat="ventas">
+                                            <td>{{hora}}</td>
+                                            <td>{{clienteNombre}} {{clienteApellido}}</td>
+                                            <td>{{correo}}</td>
+                                            <td>{{nombreModelo}}</td>
+                                            <td>{{cantidad}}</td>
+                                            <td>{{unitario}}</td>
+                                            <td>{{subtotal}}</td>
+                                            <td>{{impuesto}}</td>
+                                            <td>{{total}}</td>
                                             <td>
                                                 <button type="button" class="btn  btn-primary" data-toggle="tooltip" title="Añadir stock!">
                                                     <span class="glyphicon glyphicon-plus-sign"></span>
@@ -184,7 +143,53 @@
 
                     </div>
 
+                     <div id="menu1" class="tab-pane ">
+
+                         <div class="thumbnail">
+                            <div class="table-responsive">
+                                <table id="tablaVentasRealizadas" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Cliente</th>
+                                            <th>Correo</th>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio unitario</th>
+                                            <th>Subtotal</th>
+
+                                            <th>Impuestos</th>
+                                            <th>Total</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr w3-repeat="ventas">
+                                            <td>{{hora}}</td>
+                                            <td>{{clienteNombre}} {{clienteApellido}}</td>
+                                            <td>{{correo}}</td>
+                                            <td>{{nombreModelo}}</td>
+                                            <td>{{cantidad}}</td>
+                                            <td>{{unitario}}</td>
+                                            <td>{{subtotal}}</td>
+                                            <td>{{impuesto}}</td>
+                                            <td>{{total}}</td>
+                                           
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                     </div>
                 </div>
+
+
+
+
+
 
 
 
@@ -204,7 +209,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+
                 </div>
             </div>
         </footer>

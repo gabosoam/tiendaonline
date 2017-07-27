@@ -12,17 +12,24 @@ var connection = mysql.createPool({
 module.exports = {
 
 
-    insertar: function (datos,callback) {
-         connection.getConnection(function (err, connection) {
+      insertar: function (datos, callback) {
+        
+
+        connection.getConnection(function (err, connection) {
             if (err) {
                 callback(err, null);
             } else {
-                connection.query('INSERT INTO venta SET ?;',datos, function (error, results, fields) {//
+                connection.query('UPDATE empresa SET rucEmpresa=?, nombreEmpresa=?, direccionEmpresa=?, telefono1Empresa=?, telefono2Empresa=?', [datos.rucEmpresa,datos.nombreEmpresa, datos.direccionEmpresa, datos.telefono1Empresa,datos.telefono2Empresa], function (error, results, fields) {//
                     if (error) {
                         callback('error en la consulta: ' + error, null);
                     } else {
-                        callback(null, { categorias: results });
+
+
+                        callback(null, fields);
+
                         connection.release();
+
+
                     }
                 });
             }
@@ -40,14 +47,13 @@ module.exports = {
             if (err) {
                 callback(err, null);
             } else {
-                connection.query('SELECT * FROM v_venta WHERE estado=0;', function (error, results, fields) {
-
+                connection.query('SELECT  * FROM v_empresa;', function (error, results, fields) {//
                     if (error) {
                         callback('error en la consulta: ' + error, null);
                     } else {
 
 
-                        callback(null, { ventas: results });
+                        callback(null, results);
 
                         connection.release();
 
@@ -56,32 +62,8 @@ module.exports = {
                 });
             }
         });
-       
-
-    },
-
-      buscarRealizadas: function (callback) {
-        connection.getConnection(function (err, connection) {
-            if (err) {
-                callback(err, null);
-            } else {
-                connection.query('SELECT * FROM v_venta WHERE estado=1;', function (error, results, fields) {
-
-                    if (error) {
-                        callback('error en la consulta: ' + error, null);
-                    } else {
 
 
-                        callback(null, { ventas: results });
-
-                        connection.release();
-
-
-                    }
-                });
-            }
-        });
-       
 
     }
 }

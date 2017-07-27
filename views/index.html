@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>
-        <%- Empresa%>
+        <%- Empresa[0].nombre%>
     </title>
 
     <!-- Bootstrap Core CSS -->
@@ -65,18 +65,18 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand active" href="/">
-                    <%- Empresa%>
+                     <%- Empresa[0].nombre%>
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    
+
                     <li>
                         <a href="#foot">Contacto</a>
                     </li>
                 </ul>
-       
+
 
             </div>
             <!-- /.navbar-collapse -->
@@ -90,7 +90,7 @@
         <div class="row">
 
             <div class="col-md-3 ">
-                 <div class="input-group stylish-input-group">
+                <div class="input-group stylish-input-group">
                     <input type="text" class="form-control" placeholder="Buscar" onchange="cargarPorTermino(this.value)">
                     <span class="input-group-addon">
                         <button type="submit">
@@ -98,27 +98,27 @@
                     </button>
                     </span>
                 </div><br>
-            
 
 
-                
-                      
-                 
-                    <hr>
+
+
+
+
+                <hr>
 
 
 
                 <div class="list-group">
 
-                <% if (usuario) { %>
-                    <button class="list-group-item "><span class="glyphicon glyphicon-user"></span> <%=usuario.nombreCliente%> <%=usuario.apellidoCliente%></button>
-                    <a href="/logout" class="list-group-item"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a>
+                    <% if (usuario) { %>
+                        <button class="list-group-item "><span class="glyphicon glyphicon-user"></span> <%=usuario.nombreCliente%> <%=usuario.apellidoCliente%></button>
+                        <a href="/logout" class="list-group-item"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a>
 
-                    <% }else{ %>
+                        <% }else{ %>
 
-                       <a href="/login" class="list-group-item"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
-                        <% } %>
-                    
+                            <a href="/login" class="list-group-item"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
+                            <% } %>
+
                 </div>
                 <p class="lead">
                     Categorías
@@ -131,34 +131,42 @@
             </div>
 
             <div class="col-md-9">
+                <% if (mensaje) { %>
+                    <div class="alert alert-success">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Mensaje!</strong>
+                        <%= mensaje %>
 
-               
-
-               
-                <div class="alert alert-info alert-dismissable">
-
-                    <p id="resultado"><strong>Info! </strong>Productos disponibles.</p>
-                </div>
-
-                <div id="listaModelos" class="row pagination">
-
-                    <div w3-repeat="modelos" class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="../images/modelos/{{codigo}}.jpg" alt="" style="height: 150px; width: auto">
-                            <div class="caption">
-                                <h4 class="pull-right">${{precio}}</h4>
-                                <h4><a href="/modelo/{{codigo}}">{{modelo}}</a>
-                                </h4>
-                                <p>{{titulo}}</p>
-                            </div>
-                           
-                        </div>
                     </div>
+                    <% } %>
 
 
 
-                </div>
-                <button class="col-lg-12 btn btn-default">Ver más</button>
+
+                        <div class="alert alert-info alert-dismissable">
+
+                            <p id="resultado"><strong>Info! </strong>Productos disponibles.</p>
+                        </div>
+
+                        <div id="listaModelos" class="row pagination w3-hide">
+
+                            <div w3-repeat="modelos" class="col-sm-4 col-lg-4 col-md-4" style="min-width: 280px">
+                                <div class="thumbnail">
+                                    <img src="../images/modelos/{{codigo}}.jpg" alt="" style="height: 150px; width: auto">
+                                    <div class="caption">
+                                        <h4 class="pull-right">${{precio}}</h4>
+                                        <h4><a href="/modelo/{{codigo}}">{{modelo}}</a>
+                                        </h4>
+                                        <p>{{titulo}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
 
             </div>
 
@@ -172,15 +180,31 @@
         <hr>
 
         <!-- Footer -->
-        <footer>
-            <div id="foot" class="row">
-                <div class="col-lg-3">
-                    <h1>Tienda Online</h1>
-                </div>
-                <div class="col-lg-9">
-                    <div id="mapid" style="width: auto; height: 400px;"></div>
+        <footer id="foot" class="text-center">
+            <div class="footer-above">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-3">
+
+                        </div>
+                        <div class="footer-col col-md-9">
+                            <div class="footer-col col-md-6">
+                                <h3>Teléfonos</h3>
+                                <p> <%- Empresa[0].telefono1%></p>
+                                <p> <%- Empresa[0].telefono2%></p>
+                            </div>
+                            <div class="footer-col col-md-6">
+                                <h3>Dirección</h3>
+                                <p> <%- Empresa[0].direccion%></p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
                 </div>
             </div>
+           
         </footer>
 
     </div>

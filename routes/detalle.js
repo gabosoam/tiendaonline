@@ -1,13 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var empresa = require('../controller/empresa');
+
+const IVA = 12;
 
 /* GET home page. */
 router.post('/', isLoggedInDetalle, function (req, res, next) {
   var subtotal = req.body.precio * req.body.cantidad;
-  var impuestos = subtotal * 12 / 100;
+  var impuestos = subtotal * IVA / 100;
   var total = subtotal + impuestos;
 
-  res.render('detalle', {
+  empresa.buscar(function(error,datos){
+    res.render('detalle', {
     Empresa: 'Tienda Online',
     Modelo: req.body.modelo,      
     Cantidad: req.body.cantidad,
@@ -15,10 +19,17 @@ router.post('/', isLoggedInDetalle, function (req, res, next) {
     Subtotal: subtotal,
     Impuestos: impuestos,
     Total: total,
-    usuario: sessCliente.usuarioDatosCliente
+    usuario: sessCliente.usuarioDatosCliente,
+    Empresa:datos
   });
+
+  })
+  
+
+  
 });
 
+/* Valida si hay una sesión */
 function isLoggedInDetalle(req, res, next) {
   sessCliente = req.session;
   if (sessCliente.usuarioDatosCliente)
@@ -29,7 +40,11 @@ function isLoggedInDetalle(req, res, next) {
       res.send(error);
     } else {
 
-      res.render('detalle', { Empresa: 'Tienda Online', Producto: datos,usuario: null });
+      empresa.datos(function(error,datos){
+res.render('detalle', { Empresa: 'Tienda Online', Producto: datos,usuario: null, Empresa:datos });
+      })
+
+      
     }
   })
 

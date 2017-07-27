@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tienda online</title>
+    <!-- include jquery -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../stylesheets/bootstrap/shop-homepage.css" rel="stylesheet">
+
+    <!-- Summer CSS -->
+    <link rel="stylesheet" href="../summernote/summernote.css">
+    <script type="text/javascript" src="../summernote/summernote.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.summernote').summernote({
+                height: 200
+            });
+
+
+        });
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/admin">
+                    <%-Empresa%>
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="/admin/logout"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3 form-group">
+                <p class="lead">Administración</p>
+                <a href="/admin/productos" class="list-group-item ">Productos</a>
+                <a href="/admin/compras" class="list-group-item">Ventas</a>
+                <a href="/admin/empresa" class="list-group-item active">Empresa</a>
+
+
+
+
+            </div>
+
+            <div class="col-md-9">
+                 <% if (mensaje) { %>
+                        <div class="alert alert-info">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Mensaje!</strong>
+                            <%= mensaje %>
+
+                        </div>
+                        <% } %>
+
+                <form class="form-horizontal" method="POST" action="/admin/editar" >
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="rucEmpresa">R.U.C. de la empresa:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="<%-empresa[0].ruc%>" id="rucEmpresa" placeholder="Ingrese el código de la empresa" maxlength="13" name="rucEmpresa"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="nombreEmpresa">Nombre de la empresa:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nombreEmpresa" value="<%-empresa[0].nombre%>" placeholder="Ingrese el nombre de la empresa" maxlength="30" name="nombreEmpresa"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="direccionEmpresa">Dirección de la empresa:</label>
+                        <div class="col-sm-10">
+                            <textarea id="direccionEmpresa" class="form-control"  placeholder="Ingrese la dirección de la empresa" maxlength="255" name="direccionEmpresa"
+                                required><%-empresa[0].direccion%></textarea>
+
+                        </div>
+                    </div>
+
+                  
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="telefono1Empresa">Teléfono 1 de la empresa:</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" value="<%-empresa[0].telefono1%>" id="telefono1Empresa" placeholder="Ingrese el teléfono de la empresa" maxlength="12" name="telefono1Empresa"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="telefono2Empresa">Teléfono 2 de la empresa:</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="telefono2Empresa" value="<%-empresa[0].telefono2%>" placeholder="Ingrese el teléfono secundario de la empresa" maxlength="12" name="telefono2Empresa"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="nombreEmpresa"></label>
+                        <div class="col-sm-10">
+                            <input class="btn btn-success" type="submit" value="Guardar">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                </form>
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../javascripts/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../javascripts/w3.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../summernote/summernote.js"></script>
+
+    <!-- SocketIo -->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+    <!-- Controlador -->
+    <script src="../javascripts/gestion/adminGestion.js"></script>
+
+</body>
+
+</html>

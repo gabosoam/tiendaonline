@@ -16,7 +16,7 @@ router.post('/', function (req, res, next) {
       console.log(resultado);
     }
   
-    res.redirect('/');
+    res.render('index', { Empresa: "Tienda online", usuario: sessCliente.usuarioDatosCliente, mensaje: "Compra realizada" });
     
   
   });

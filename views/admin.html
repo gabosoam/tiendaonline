@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Item - Start Bootstrap Template</title>
+    <title>Tienda online</title>
     <!-- include jquery -->
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -51,27 +51,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/admin">
                     <%-Empresa%>
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                 
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/admin/logout"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  
+                    <li><a href="/admin/logout"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -85,10 +77,11 @@
         <div class="row">
 
             <div  class="col-md-3 form-group">
-                <p class="lead">Shop Name</p>
+                <p class="lead">Administración</p>
                 <a href="/admin/productos" class="list-group-item active">Productos</a>
                 <a href="/admin/compras" class="list-group-item">Ventas</a>
-                <a href="" class="list-group-item ">Empresa</a>
+                <a href="/admin/empresa" class="list-group-item ">Empresa</a>
+            
 
 
 
@@ -122,7 +115,7 @@
                                     </thead>
                                     <tbody>
                                         <tr w3-repeat="modelos">
-                                            <td><input class="form-control" type="text" value="{{codigo}}"></td>
+                                            <td>{{codigo}}</td>
                                             <td>{{modelo}}</td>
                                             <td>{{marca}}</td>
                                             <td>{{categoria}}</td>
@@ -181,9 +174,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="precioModelo">Precio del producto:</label>
+                                <label class="control-label col-sm-2" for="precioModelo">Precio del producto: $</label>
                                 <div class="col-sm-10">
-                                    <input type="number" step="any" class="form-control" id="precioModelo" min="1" placeholder="Ingrese el precio del producto" name="precioModelo"
+                                    <input type="number" step="any" class="form-control" id="precioModelo" min="1" max="10000" placeholder="Ingrese el precio del producto en dólares" name="precioModelo"
                                         required>
                                 </div>
                             </div>
@@ -196,7 +189,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="tituloModelo">Título de la publicación:</label>
+                                <label class="control-label col-sm-2" for="tituloModelo">Descripción del producto:</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="tituloModelo" placeholder="Ingrese el título de la publicación" maxlength="100"
                                         name="tituloModelo" required>
